@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Person(name, age) {
+        this._name = name;
+        this._age = age;
+        return undefined;
+        // return null;
+        // return []
+      }
+
+      // 构造函数  constructor, 构造函数参数  params
+      function _new(constructor, params) {
+        console.log('arguments :>> ', arguments);
+        // 将 arguments 对象转为数组
+        const args = Array.from(arguments);
+        console.log('args :>> ', args);
+        // 取出构造函数
+        constructor = args.shift();
+        console.log('constructor :>> ', constructor);
+        console.log('constructor.prototype :>> ', constructor.prototype);
+        // 创建一个空对象，继承构造函数的 prototype 属性
+        const context = Object.create(constructor.prototype);
+        console.log('context :>> ', context);
+        // 执行构造函数
+        const result = constructor.apply(context, args);
+        console.log('result :>> ', result);
+        // 如果返回结果是对象，就直接返回，否则返回 context 对象
+        return typeof result === 'object' && result != null ? result : context;
+      }
+
+      // 实例
+      const actor = _new(Person, '张三', 28);
+      console.log('actor :>> ', actor);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Vehicle(price) {
+        console.log('new.target :>> ', new.target === Vehicle);
+
+        if (!(new.target === Vehicle)) {
+          throw new Error('请使用 new 命令调用!');
+        }
+        console.log('this :>> ', this);
+        console.log('this instanceof Vehicle :>> ', this instanceof Vehicle);
+        // // 这里为了兼容无new命令的情况
+        // if (!(this instanceof Vehicle)) {
+        //   return new Vehicle(price);
+        // }
+        this._price = price;
+      }
+
+      //原型对象
+      Vehicle.prototype = {
+        constructor: Vehicle,
+        eat: function (param) {
+          console.log(`eat ${param}`);
+        }
+      };
+
+      // 1.有new
+      let v1 = new Vehicle(200);
+      console.log(v1._price);
+      v1.eat('鸡腿');
+      console.log('v1 :>> ', v1);
+
+      console.log('-----------------------------------');
+
+      // 2.无new
+      let v2 = Vehicle(1200);
+      console.log(v2._price);
+      v2.eat('猪头');
+      console.log('v2 :>> ', v2);
+    </script>
+  </body>
+</html>
