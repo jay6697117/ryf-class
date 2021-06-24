@@ -87,22 +87,75 @@
       // console.log('addRes1 :>> ', addRes1);
 
       // 4
-      class B {
-        m1() {
-          console.log(m1);
-        }
-      }
+      // class B {
+      //   m1() {
+      //     console.log(m1);
+      //   }
+      //   m2() {
+      //     console.log(m2);
+      //   }
+      //   m3() {
+      //     console.log(m3);
+      //   }
+      // }
+
+      function B() {}
+      B.prototype.m1 = function m1() {
+        console.log(m1);
+      };
+      B.prototype.m2 = function m2() {
+        console.log(m2);
+      };
+      B.prototype.m3 = function m3() {
+        console.log(m3);
+      };
+
+      // B.prototype = {
+      //   constructor: B,
+      //   m1() {
+      //     console.log(m1);
+      //   },
+      //   m2() {
+      //     console.log(m2);
+      //   },
+      //   m3() {
+      //     console.log(m3);
+      //   }
+      // };
+
       const b = new B();
       console.log('B.prototype 000:>> ', B.prototype);
-      Object.assign(B.prototype, {
-        m2: function () {
-          console.log(m2);
-        },
-        m3() {
-          console.log(m3);
-        }
-      });
+      // Object.assign(B.prototype, {
+      //   m2: function m2() {
+      //     console.log(m2);
+      //   },
+      //   m3: function m3() {
+      //     console.log(m3);
+      //   }
+      // });
+      // Object.defineProperties(B.prototype, {
+      //   m2: {
+      //     value: function m2() {
+      //       console.log(m2);
+      //     },
+      //     enumerable: false //默认false
+      //   },
+      //   m3: {
+      //     value: function m3() {
+      //       console.log(m3);
+      //     },
+      //     enumerable: false //默认false
+      //   }
+      // });
       console.log('B.prototype 001:>> ', B.prototype);
+
+      // prototype对象的constructor属性，直接指向“类”的本身，这与 ES5 的行为是一致的。
+      console.log('B.prototype.constructor === B :>> ', B.prototype.constructor === B);
+      // 类的内部所有定义的方法，都是不可枚举的（non-enumerable），这一点与 ES5 的行为不一致。
+      const keys = Object.keys(B.prototype);
+      console.log('keys :>> ', keys);
+      const ownKeys = Object.getOwnPropertyNames(B.prototype);
+      console.log('ownKeys :>> ', ownKeys);
     </script>
   </body>
 </html>
