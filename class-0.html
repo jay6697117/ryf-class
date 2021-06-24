@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1.原型
+      // function Point(x, y) {
+      //   this._x = x;
+      //   this._y = y;
+      // }
+      // // 1.1
+      // Point.prototype.joinStr = function () {
+      //   return this._x + '-' + this._y;
+      // };
+      // // 1.2
+      // Point.prototype = {
+      //   constructor: Point,
+      //   joinStr() {
+      //     return this._x + '-' + this._y;
+      //   }
+      // };
+
+      // 2.class类
+      // class Point {
+      //   constructor(x, y) {
+      //     this._x = x;
+      //     this._y = y;
+      //   }
+      //   joinStr() {
+      //     return this._x + '-' + this._y;
+      //   }
+      // }
+      // var p = new Point(1, 2);
+      // console.log('p :>> ', p);
+      // const res = p.joinStr();
+      // console.log('res :>> ', res);
+      // console.log('typeof Point :>> ', typeof Point);
+      // console.log('Point.prototype :>> ', Point.prototype);
+      // console.log('Point.prototype.constructor === Point :>> ', Point.prototype.constructor === Point);
+      // console.log('Point.prototype.constructor :>> ', Point.prototype.constructor);
+
+      // 3
+      // class Point {
+      //   constructor(x, y) {
+      //     this._x = x;
+      //     this._y = y;
+      //   }
+      //   join() {
+      //     return this._x + '-' + this._y;
+      //   }
+      //   add() {
+      //     return parseInt(this._x) + parseInt(this._y);
+      //   }
+      // }
+      // var p = new Point(1, 2);
+      // console.log('p :>> ', p);
+      // const joinRes = p.join();
+      // console.log('joinRes :>> ', joinRes);
+      // const addRes = p.add();
+      // console.log('addRes :>> ', addRes);
+
+      // console.log('----------------------------------');
+
+      // function Point1(x, y) {
+      //   this._x = x;
+      //   this._y = y;
+      // }
+      // Point1.prototype = {
+      //   constructor: Point1,
+      //   join() {
+      //     return this._x + '-' + this._y;
+      //   },
+      //   add() {
+      //     return parseInt(this._x) + parseInt(this._y);
+      //   }
+      // };
+      // var p1 = new Point1(11, 22);
+      // console.log('p1 :>> ', p1);
+      // const joinRes1 = p1.join();
+      // console.log('joinRes1 :>> ', joinRes1);
+      // const addRes1 = p1.add();
+      // console.log('addRes1 :>> ', addRes1);
+
+      // 4
+      class B {
+        m1() {
+          console.log(m1);
+        }
+      }
+      const b = new B();
+      console.log('B.prototype 000:>> ', B.prototype);
+      Object.assign(B.prototype, {
+        m2: function () {
+          console.log(m2);
+        },
+        m3() {
+          console.log(m3);
+        }
+      });
+      console.log('B.prototype 001:>> ', B.prototype);
+    </script>
+  </body>
+</html>
